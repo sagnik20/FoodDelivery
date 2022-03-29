@@ -1,0 +1,31 @@
+Food Delivery System(Zomato/Swiggy)
+
+1. Admin - approve restaurants, manage restaurants
+2. Customer - order, reviews, checkout, payment
+3. Restaurants - add food items, delete items
+4. 
+
+Create New Project:
+1) New Maven Project -> archetype
+2) Layers(Packages) -client, dao, dbconnect, services, model
+
+
+Customer Login
+1. Sees a list of restaurants
+2. select a restaurants(switch case)
+3. Display available list food items of the selected restaurant
+4. select a food item - multiple selection, count for a food item, price*order
+5. checkout - all the details are displayed(name, food selected, total price)
+6. payment (input==totalPrice -> sysout(payment successful))
+	else -> payment unsuccessful -> try again/ cancel order
+7. Sysout(Your order is on the way!!)
+
+Admin Login
+1. List of restaurants
+2. Add/Delete restaurants(switch case)
+
+Restaurant Owner
+1. Add food items(name, price)
+2. Delete food items 
+
+Hibernate -> draw relations between dbs
