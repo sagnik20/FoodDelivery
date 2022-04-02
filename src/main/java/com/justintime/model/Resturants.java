@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.justintime.client;
+package com.justintime.model;
 
 /**
  * @author Sagnik
