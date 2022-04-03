@@ -16,7 +16,7 @@ public class CustomerImpl extends Customer {
 		// TODO Auto-generated constructor stub
 	}
 	
-	void welcome() throws Exception{
+	public void welcome() throws Exception{
 		//choice of Resturants
 		// choice of Dishes
 		//confirm order

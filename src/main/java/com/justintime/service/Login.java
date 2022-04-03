@@ -1,15 +1,12 @@
 package com.justintime.service;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
 import com.justintime.client.CustomerImpl;
+import com.justintime.client.RestaurantsImpl;
 import com.justintime.dao.loginDao;
-import com.justintime.db.dbConnect;
-import com.justintime.model.Customer;
 
 /**
  * @author Sagnik
@@ -44,26 +41,43 @@ public class Login {
 				Login cs = new Login();
 				logger.info("Customer Login initiated");
 				cs.getId();
-				loginDao ld = new loginDao();
-				ResultSet rs = ld.customerCheck(cs.email,cs.password);
+				loginDao lc = new loginDao();
+				ResultSet rs = lc.customerCheck(cs.email,cs.password);
 				if(rs.next()) {
 					String name = rs.getString("userName");
 					String address = rs.getString("userAddress");
 					int number = rs.getInt("userNumber");
-					Customer cst = new CustomerImpl(name,address,number);
+					CustomerImpl cst = new CustomerImpl(name,address,number);
 					logger.info("Going in to CustomerImpl.Java file");
+					cst.welcome();
 				}
 				else {
 					logger.info("Wrong password entered by Customer");
-					System.out.println("Wrong  Email and password");
+					System.out.println("Wrong  Email and/or Password");
 				}
 				break;
 			case 2:
 				Login res = new Login();
 				logger.info("Resturant Login initiated");
 				res.getId();
-				
-				
+				loginDao lr = new loginDao();
+				ResultSet rr = lr.restaurantCheck(res.email,res.password);
+				if(rr.next()) {
+					int resId = rr.getInt("resId");
+					String name = rr.getString("resName");
+					String regNo = rr.getString("resRegNo");
+					String status = rr.getString("resStatus");
+					String address = rr.getString("resAddress");
+					String email = rr.getString("resEmail");
+					String pass = rr.getString("resPassword");
+					RestaurantsImpl rst = new RestaurantsImpl(resId,name,regNo,status,address,email,pass);
+					rst.welcome();
+					
+				}
+				else {
+					logger.info("Wrong password entered by Restaurant");
+					System.out.println("Wrong  Email and/or Password");
+				}
 			}
 				
 			
