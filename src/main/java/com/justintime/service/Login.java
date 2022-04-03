@@ -6,7 +6,11 @@ import java.util.logging.Logger;
 
 import com.justintime.client.CustomerImpl;
 import com.justintime.client.RestaurantsImpl;
+import com.justintime.dao.SignUpDao;
+import com.justintime.dao.SignUpDaoImpl;
 import com.justintime.dao.loginDao;
+import com.justintime.model.Customer;
+import com.justintime.model.Restaurants;
 
 /**
  * @author Sagnik
@@ -21,28 +25,30 @@ public class Login {
 	 * @param args
 	 * @throws Exception 
 	 */
+	static Scanner sc = new Scanner(System.in);
 	public static void main(String[] args) throws Exception {
 		
 		logger.info("Within Login page");
 		System.out.println("Welcome!");
 		
-		Scanner sc = new Scanner(System.in);
+		Login login = new Login();
 		
 		while(true) {
 			System.out.println("Who are you?");
-			System.out.println("1. Customer");
-			System.out.println("2. Resturant Owner");
-			System.out.println("3. System Admin");
+			System.out.println("1. Customer Sign in");
+			System.out.println("2. Resturant Owner Sign in");
+			System.out.println("3. New Customer Registration");
+			System.out.println("4. New Registration Registration");
+			System.out.println("5. System Admin");
 			
 			int c = Integer.parseInt(sc.nextLine());
 			
 			switch(c) {
 			case 1:
-				Login cs = new Login();
 				logger.info("Customer Login initiated");
-				cs.getId();
+				login.getId();
 				loginDao lc = new loginDao();
-				ResultSet rs = lc.customerCheck(cs.email,cs.password);
+				ResultSet rs = lc.customerCheck(login.email,login.password);
 				if(rs.next()) {
 					String name = rs.getString("userName");
 					String address = rs.getString("userAddress");
@@ -57,11 +63,10 @@ public class Login {
 				}
 				break;
 			case 2:
-				Login res = new Login();
 				logger.info("Resturant Login initiated");
-				res.getId();
+				login.getId();
 				loginDao lr = new loginDao();
-				ResultSet rr = lr.restaurantCheck(res.email,res.password);
+				ResultSet rr = lr.restaurantCheck(login.email,login.password);
 				if(rr.next()) {
 					int resId = rr.getInt("resId");
 					String name = rr.getString("resName");
@@ -71,6 +76,7 @@ public class Login {
 					String email = rr.getString("resEmail");
 					String pass = rr.getString("resPassword");
 					RestaurantsImpl rst = new RestaurantsImpl(resId,name,regNo,status,address,email,pass);
+					logger.info("Going in to RestaurantsImpl.Java file");
 					rst.welcome();
 					
 				}
@@ -78,6 +84,31 @@ public class Login {
 					logger.info("Wrong password entered by Restaurant");
 					System.out.println("Wrong  Email and/or Password");
 				}
+			case 3:
+				logger.info("New Customer Creation initiated");
+				Customer c1 = login.getCustomer();
+				SignUpDao su = new SignUpDaoImpl();
+				if(su.customer(c1)) {
+					logger.info("Successfylly added new  Customer");
+					System.out.println("Account created successfully! \nNow LogIn to access your account!");
+				}
+				else {
+					logger.severe("Error occoured while Customer account creation");
+					System.out.println("Sorry! We couldn't create your account now!\nTry again later");
+				}
+			case 4:
+				logger.info("New Customer Creation initiated");
+				Restaurants r1 = login.getRes();
+				SignUpDao su1 = new SignUpDaoImpl();
+				if(su1.restaurant(r1)) {
+					logger.info("Successfylly added new  Customer");
+					System.out.println("Account created successfully! \nNow LogIn to access your account!");
+				}
+				else {
+					logger.severe("Error occoured while Customer account creation");
+					System.out.println("Sorry! We couldn't create your account now!\nTry again later");
+				}
+				
 			}
 				
 			
@@ -87,12 +118,59 @@ public class Login {
 	
 	private void getId() {
 		logger.info("Getting email and password");
-		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter your Email: ");
 		this.email = sc.nextLine();
 		System.out.println("Enter your Password: ");
 		this.password = sc.nextLine();
 		logger.info("Got email and password. Now validating details");
+	}
+	
+	private Customer getCustomer() {
+		logger.info("Creating new Customer");
+		System.out.println("Welcome to Food Delivery Services!");
+		System.out.println("We deliver Hot and Fresh Foods from your fav Restaurants directly to your Doorstep");
+		System.out.println("To use our services you need an account!");
+		System.out.println("So first tell us who you are (Your Name)?");
+		String name = sc.nextLine();
+		System.out.println("Your Email address Please!");
+		String email =sc.nextLine();
+		System.out.println("Where should we deliver your Favourite food items (your address) ?");
+		String address = sc.nextLine();
+		System.out.println("Create a secret password for your account:");
+		String pass = sc.nextLine();
+		System.out.println("Your Phone number Please!");
+		int number = sc.nextInt();
+		System.out.println("How old are you? \nYou should be 13+ to use our services!");
+		int age = sc.nextInt();
+		
+		Customer newCst = new Customer(0,age,name,address,email,pass,number);
+		System.out.println("Thank you for choosing our Food Delivery System!");
+		System.out.println("We are happy to have you on Board!");
+		return newCst;
+		
+	}
+	
+	private Restaurants getRes() {
+		logger.info("Creating new Restaurant");
+		System.out.println("Welcome to Food Delivery Services!");
+		System.out.println("We deliver Hot and Fresh Foods from Restaurants, like yours, directly to your Customers");
+		System.out.println("This helps your bussiness to grow and reach a larger Customer range");
+		System.out.println("To make use our services you need an account!");
+		System.out.println("So first tell us what's Your Resturant Name?");
+		String resName = sc.nextLine();
+		System.out.println("Your Registration Number please!");
+		String regNo = sc.nextLine();
+		System.out.println("Your Restaurant location");
+		String address = sc.nextLine();
+		System.out.println("Enter your Email address");
+		String email = sc.nextLine();
+		System.out.println("Create a secure Password");
+		String pass =sc.nextLine();
+		
+		Restaurants r = new Restaurants(0,resName,regNo,"active",address,email,pass);
+		return r;
+		
+		
 	}
 
 }
