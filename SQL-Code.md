@@ -32,8 +32,8 @@ primary key(foodId)
 
 create table menu(
 menuId int not null auto_Increment,
-resId int not null,
-foodId int not null,
+resId int,
+foodId int,
 foodPrice int not null,
 FOREIGN KEY (resId) REFERENCES restaurants(resId),
 FOREIGN KEY (foodId) REFERENCES food(foodId),
@@ -42,8 +42,8 @@ primary key(menuId)
 
 create table orders(
 orderId int not null auto_Increment,
-userId int not null,
-menuId int not null,
+userId int,
+menuId int,
 unitPrice int not null,
 quantity int not null,
 FOREIGN KEY (userId) REFERENCES users(userId),

@@ -47,6 +47,9 @@ public class RestaurantsImpl extends Restaurants {
 			
 			FoodDao fd = new FoodDaoImpl();
 			int ch =sc.nextInt();
+			if(sc.hasNext())
+				sc.nextLine();
+			
 			switch(ch) {
 			case 1:
 				logger.info("adding food item");
