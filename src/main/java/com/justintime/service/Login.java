@@ -84,6 +84,7 @@ public class Login {
 					logger.info("Wrong password entered by Restaurant");
 					System.out.println("Wrong  Email and/or Password");
 				}
+				break;
 			case 3:
 				logger.info("New Customer Creation initiated");
 				Customer c1 = login.getCustomer();
@@ -96,18 +97,26 @@ public class Login {
 					logger.severe("Error occoured while Customer account creation");
 					System.out.println("Sorry! We couldn't create your account now!\nTry again later");
 				}
+				break;
 			case 4:
-				logger.info("New Customer Creation initiated");
+				logger.info("New Restaurant Creation initiated");
 				Restaurants r1 = login.getRes();
 				SignUpDao su1 = new SignUpDaoImpl();
 				if(su1.restaurant(r1)) {
-					logger.info("Successfylly added new  Customer");
+					logger.info("Successfylly added new  Restaurant");
 					System.out.println("Account created successfully! \nNow LogIn to access your account!");
 				}
 				else {
-					logger.severe("Error occoured while Customer account creation");
+					logger.severe("Error occoured while Restaurant account creation");
 					System.out.println("Sorry! We couldn't create your account now!\nTry again later");
 				}
+				break;
+			case 5:
+				break;
+			default:
+				sc.close();
+				System.out.println("Thank you for using our Service!");
+				System.exit(0);
 				
 			}
 				
