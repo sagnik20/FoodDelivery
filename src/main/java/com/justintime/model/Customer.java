@@ -31,7 +31,8 @@ public class Customer {
 	 * @param address
 	 * @param number
 	 */
-	public Customer(String name, String address, int number) {
+	public Customer(int id,String name, String address, int number) {
+		this.id = id;
 		this.name = name;
 		this.address = address;
 		this.number = number;

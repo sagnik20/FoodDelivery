@@ -8,7 +8,7 @@ import com.justintime.client.CustomerImpl;
 import com.justintime.client.RestaurantsImpl;
 import com.justintime.dao.SignUpDao;
 import com.justintime.dao.SignUpDaoImpl;
-import com.justintime.dao.loginDao;
+import com.justintime.dao.LoginDao;
 import com.justintime.model.Customer;
 import com.justintime.model.Restaurants;
 
@@ -47,13 +47,14 @@ public class Login {
 			case 1:
 				logger.info("Customer Login initiated");
 				login.getId();
-				loginDao lc = new loginDao();
+				LoginDao lc = new LoginDao();
 				ResultSet rs = lc.customerCheck(login.email,login.password);
 				if(rs.next()) {
+					int id = rs.getInt("userId");
 					String name = rs.getString("userName");
 					String address = rs.getString("userAddress");
 					int number = rs.getInt("userNumber");
-					CustomerImpl cst = new CustomerImpl(name,address,number);
+					CustomerImpl cst = new CustomerImpl(id,name,address,number);
 					logger.info("Going in to CustomerImpl.Java file");
 					cst.welcome();
 				}
@@ -65,7 +66,7 @@ public class Login {
 			case 2:
 				logger.info("Resturant Login initiated");
 				login.getId();
-				loginDao lr = new loginDao();
+				LoginDao lr = new LoginDao();
 				ResultSet rr = lr.restaurantCheck(login.email,login.password);
 				if(rr.next()) {
 					int resId = rr.getInt("resId");

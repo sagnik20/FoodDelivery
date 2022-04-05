@@ -10,7 +10,7 @@ import com.justintime.db.dbConnect;
  * @author Sagnik
  *
  */
-public class loginDao {
+public class LoginDao {
 
 	public ResultSet customerCheck(String email,String pass) throws Exception {
 		Connection con = dbConnect.getConnection();
