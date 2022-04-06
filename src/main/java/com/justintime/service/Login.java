@@ -119,6 +119,10 @@ public class Login {
 			case 5:
 				logger.info("Administrator Login initiated");
 				Admin a = login.getAdm();
+				if(a!=null)
+					logger.info("Admin Login successful");
+				else
+					logger.info("Admin Login failed");
 				System.out.println("This section is under Construction!");
 				System.out.println("We will be open shortly!");
 				break;
