@@ -1,13 +1,12 @@
 /**
  * 
  */
-package com.justintime.client;
+package com.justintime.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import com.justintime.dao.UserDao;
 import com.justintime.db.dbConnect;
 
 /**

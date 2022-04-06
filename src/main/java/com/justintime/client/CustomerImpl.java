@@ -11,6 +11,7 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 
 import com.justintime.dao.UserDao;
+import com.justintime.dao.UserDaoImpl;
 import com.justintime.model.Customer;
 
 /**

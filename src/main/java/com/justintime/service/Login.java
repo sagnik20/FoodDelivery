@@ -4,11 +4,15 @@ import java.sql.ResultSet;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+import com.justintime.client.Admin;
 import com.justintime.client.CustomerImpl;
 import com.justintime.client.RestaurantsImpl;
 import com.justintime.dao.SignUpDao;
 import com.justintime.dao.SignUpDaoImpl;
+import com.justintime.dao.AdminDao;
+import com.justintime.dao.AdminDaoImpl;
 import com.justintime.dao.LoginDao;
+import com.justintime.model.Administrator;
 import com.justintime.model.Customer;
 import com.justintime.model.Restaurants;
 
@@ -113,6 +117,8 @@ public class Login {
 				}
 				break;
 			case 5:
+				logger.info("Administrator Login initiated");
+				Admin a = login.getAdm();
 				System.out.println("This section is under Construction!");
 				System.out.println("We will be open shortly!");
 				break;
@@ -183,6 +189,16 @@ public class Login {
 		return r;
 		
 		
+	}
+	
+	private Admin getAdm() {
+		logger.info("Taking Admin details");
+		System.out.println("Enter your User Name:");
+		String u = sc.nextLine();
+		System.out.println("Enter your Password");
+		String p = sc.nextLine();
+		AdminDao ad = new AdminDaoImpl();
+		return ad.login(u, p);
 	}
 
 }
