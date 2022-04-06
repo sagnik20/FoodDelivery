@@ -46,9 +46,8 @@ public class RestaurantsImpl extends Restaurants {
 			System.out.println("Press anything else to LOG OUT");
 			
 			FoodDao fd = new FoodDaoImpl();
-			int ch =sc.nextInt();
-			if(sc.hasNext())
-				sc.nextLine();
+			int ch =Integer.parseInt(sc.nextLine());
+			
 			
 			switch(ch) {
 			case 1:
