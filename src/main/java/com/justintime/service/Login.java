@@ -118,13 +118,15 @@ public class Login {
 				break;
 			case 5:
 				logger.info("Administrator Login initiated");
-				Admin a = login.getAdm();
-				if(a!=null)
+				AdminDao ad = new AdminDaoImpl();
+				login.getId();
+				Admin a = ad.login(login.email, login.password);
+				if(a!=null) {
 					logger.info("Admin Login successful");
+					a.welcome();					
+				}
 				else
 					logger.info("Admin Login failed");
-				System.out.println("This section is under Construction!");
-				System.out.println("We will be open shortly!");
 				break;
 			default:
 				sc.close();
@@ -195,14 +197,6 @@ public class Login {
 		
 	}
 	
-	private Admin getAdm() {
-		logger.info("Taking Admin details");
-		System.out.println("Enter your User Name:");
-		String u = sc.nextLine();
-		System.out.println("Enter your Password");
-		String p = sc.nextLine();
-		AdminDao ad = new AdminDaoImpl();
-		return ad.login(u, p);
-	}
+
 
 }

@@ -21,5 +21,9 @@ public class Admin extends Administrator {
 		super(id, uName, pass, name);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public void welcome() {
+		
+	}
 
 }
