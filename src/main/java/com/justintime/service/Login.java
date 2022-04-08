@@ -44,9 +44,13 @@ public class Login {
 			System.out.println("3. New Customer Registration");
 			System.out.println("4. New Registration Registration");
 			System.out.println("5. System Admin");
-			
-			int c = Integer.parseInt(sc.nextLine());
-			
+			int c;
+			String s = sc.nextLine();
+			try {
+				c = Integer.parseInt(s);
+			} catch (NumberFormatException e) {
+				c=Integer.parseInt(sc.nextLine());
+			}
 			switch(c) {
 			case 1:
 				logger.info("Customer Login initiated");

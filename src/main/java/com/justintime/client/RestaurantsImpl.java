@@ -46,10 +46,16 @@ public class RestaurantsImpl extends Restaurants {
 			System.out.println("Press anything else to LOG OUT");
 			
 			FoodDao fd = new FoodDaoImpl();
-			int ch =Integer.parseInt(sc.nextLine());
+			int c;
+			String s = sc.nextLine();
+			try {
+				c = Integer.parseInt(s);
+			} catch (NumberFormatException e) {
+				c=Integer.parseInt(sc.nextLine());
+			}
 			
 			
-			switch(ch) {
+			switch(c) {
 			case 1:
 				logger.info("adding food item");
 				System.out.println("Enter your food Item Name : ");

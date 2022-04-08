@@ -62,7 +62,9 @@ public class FoodDaoImpl implements FoodDao {
 			pst.setInt(1, m.getResId());
 			pst.setInt(2, m.getFoodId());
 			pst.setInt(3, m.getPrice());
-			return pst.execute();
+			int i = pst.executeUpdate();
+			if(i>0)return true;
+			else return false;
 		}
 		catch(Exception e) {
 			e.printStackTrace();
