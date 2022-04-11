@@ -8,4 +8,14 @@
 [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
 
+## Technologies Used
+
+* Java - version 1.8
+* JDBC - version 4.3
+* MySQL - version 8.0
+* Log 4j - version 1.2.17
+* JUnit - version 4
+
+
+
 ![image](https://user-images.githubusercontent.com/36898274/160878885-5f29cc9b-c23e-4ead-a3a9-b9083604a104.png)
